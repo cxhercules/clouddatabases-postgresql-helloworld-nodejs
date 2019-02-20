@@ -1,5 +1,5 @@
 {
-    "name": "compose-postgresql-helloworld-nodejs",
+    "name": "clouddatabases-postgresql-helloworld-nodejs",
     "version": "0.0.0",
     "dependencies": {
       "body-parser": "^1.15.2",
@@ -17,17 +17,17 @@
     },
     "repository": {
       "type": "git",
-      "url": "https://github.com/IBM-Cloud/compose-postgresql-helloworld-nodejs.git"
+      "url": "https://github.com/IBM-Cloud/clouddatabases-postgresql-helloworld-nodejs.git"
     },
     "author": "IBM Corp.",
     "contributors": [
       {
-        "name": "Neil Dewhurst",
-        "email": "ndewhurs@uk.ibm.com"
+        "name": "Abdullah Alger",
+        "email": "abdullah.alger@ibm.com"
       }
     ],
     "bugs": {
-      "url": "https://github.com/IBM-Cloud/compose-postgresql-helloworld-nodejs/issues"
+      "url": "https://github.com/IBM-Cloud/clouddatabases-postgresql-helloworld-nodejs/issues"
     },
     "license": "Apache-2.0"
 }
