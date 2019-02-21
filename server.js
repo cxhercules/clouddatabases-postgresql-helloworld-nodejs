@@ -62,16 +62,16 @@ const appEnv = cfenv.getAppEnv(appEnvOpts);
 let services = appEnv.services;
 
 // The services object is a map named by service so we extract the one for PostgreSQL
-var pg_services = services["databases-for-postgresql"];
+let pg_services = services["databases-for-postgresql"];
 
 // This check ensures there is a services for PostgreSQL databases
 assert(!util.isUndefined(pg_services), "Must be bound to databases-for-postgresql services");
 
 // We now take the first bound PostgreSQL service and extract it's credentials object
-var credentials = pg_services[0].credentials;
-var postgresconn = credentials.connection.postgres;
+let credentials = pg_services[0].credentials;
+let postgresconn = credentials.connection.postgres;
 
-let caCert = new Buffer.from(postgresconn.certificate.certificate_base64, 'base64').toString();
+let caCert = Buffer.from(postgresconn.certificate.certificate_base64, 'base64').toString();
 
 let connectionString = postgresconn.composed[0];
 
