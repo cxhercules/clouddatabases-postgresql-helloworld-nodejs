@@ -90,6 +90,73 @@ The app uses a PUT and a GET operation:
   - uses `client.query` method to retrieve the contents of the _words_ table
   - returns the response of the database command to [main.js](public/javascript/main.js)
 
+## Local Testing
+
+Install node if you don't have it. For mac:
+```shell
+brew install node
+```
+
+Install the dependencies listed in the package.json file.
+```shell
+npm install
+```
+
+Now start the local server.
+```shell
+npm start
+```
+
+Example local vcap-local.json
+```json
+{
+  "services": {
+    "databases-for-postgresql": [
+      {
+        "credentials": {
+          "connection": {
+            "cli": {
+              "arguments": [
+                [
+                  "host=localhost port=5432 dbname=postgres user=postgres"
+                ]
+              ],
+              "bin": "psql",
+              "composed": [
+                "PGPASSWORD=secret  psql 'host=localhost port=5432 dbname=postgres user=postgres'"
+              ],
+              "environment": {
+                "PGPASSWORD": "secret"
+              },
+              "type": "cli"
+            },
+            "postgres": {
+              "authentication": {
+                "method": "direct",
+                "password": "secret",
+                "username": "postgres"
+              },
+              "composed": [
+                "postgres://postgres:secret@localhost:5432/postgres"
+              ],
+              "database": "postgres",
+              "hosts": [
+                {
+                  "hostname": "localhost",
+                  "port": 5432
+                }
+              ],
+              "path": "/postgres",
+              "scheme": "postgres",
+              "type": "uri"
+            }
+          }
+        }
+      }
+    ]
+  }
+}
+```
 
 
 [databases_for_postgreSQL_url]: https://console.bluemix.net/catalog/services/databases-for-postgreSQL/
