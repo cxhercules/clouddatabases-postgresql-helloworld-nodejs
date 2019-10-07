@@ -70,18 +70,28 @@ assert(!util.isUndefined(pg_services), "Must be bound to databases-for-postgresq
 // We now take the first bound PostgreSQL service and extract it's credentials object
 let credentials = pg_services[0].credentials;
 let postgresconn = credentials.connection.postgres;
+var caCert; // declared
 
-let caCert = Buffer.from(postgresconn.certificate.certificate_base64, 'base64').toString();
+if (postgresconn.certificate){
+    caCert = Buffer.from(postgresconn.certificate.certificate_base64, 'base64').toString();
+}
+
 
 let connectionString = postgresconn.composed[0];
-
+var client; // declare client
 
 // set up a new client using our config details
-let client = new pg.Client({ connectionString: connectionString,
-    ssl: {
-        ca: caCert
-    }
- });
+if (postgresconn.certificate){
+
+    client = new pg.Client({ connectionString: connectionString,
+        ssl: {
+            ca: caCert
+        }
+    });
+} else {
+    client = new pg.Client({ connectionString: connectionString});
+}
+
 
 client.connect(function(err) {
     if (err) {
